@@ -1,0 +1,30 @@
+body {
+    overflow-x: hidden;
+}
+
+body, a {
+    cursor: none;
+}
+.mouse_cursor {
+    position: absolute;
+	z-index:1000;
+	width: 20px;
+	height: 20px;
+	background-color: $color-green;
+	border-radius: 50%;
+	user-select: none;
+	pointer-events: none;
+    mix-blend-mode: exclusion;
+    &.active{
+        width: 500px;
+        height: 354px;
+        transform: translate(-50%, -50%);
+        background: url(../images/cursor_arrow.svg) no-repeat center;
+        background-size: contain;
+        @include tablet {
+            width: 330px;
+            height: 240px;
+        }
+    }
+    
+}

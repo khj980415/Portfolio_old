@@ -1,0 +1,28 @@
+header {
+    display: flex;
+    position: fixed;
+    width: 100%;
+    padding: 20px 20px 0px 20px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    color: #fff;
+    mix-blend-mode: exclusion;
+    font-style: italic;
+    z-index: 1000;
+        font-weight: 300;
+    h1 {
+        font-size: 18px;
+        text-decoration-line: underline;
+        font-weight: 300;
+        letter-spacing: -1px;
+    }
+    nav {
+        ul li a {
+            color: #fff;
+            text-align: right;
+            &.active, &:hover {
+                text-decoration-line: underline;
+            }
+        }
+    }
+}

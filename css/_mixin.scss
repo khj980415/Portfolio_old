@@ -1,0 +1,86 @@
+@import "_variables";
+
+// 1024px
+@mixin grid {
+    @media only screen and (max-width: $breakpoint-grid) {
+        @content;
+    }
+}
+
+// 920px
+@mixin laptopToTablet {
+    @media only screen and (max-width: $breakpoint-laptopToTablet) {
+        @content;
+    }
+}
+
+// 760px
+@mixin tablet {
+    @media only screen and (max-width: $breakpoint-tablet) {
+        @content;
+    }
+}
+
+// 470px
+@mixin tabletToMobile {
+    @media only screen and (max-width: $breakpoint-tabletToMobile) {
+        @content;
+    }
+}
+
+// 375px
+@mixin mobile {
+    @media only screen and (max-width: $breakpoint-mobile) {
+        @content;
+    }
+}
+
+@mixin section($color, $height:100vh) {
+    font-size: 1em;
+    background-color: $color;
+    height: $height;
+    .inner {
+        margin: 0 auto;
+        max-width: 1240px;
+        height: 100%;
+        box-sizing: border-box;
+        @content;
+        @include grid {
+            padding: 0 20px;
+        }
+}
+}
+
+@mixin line($color){
+        content: "";
+        display: inline-block;
+        width: 100%;
+        height: 1px;
+        background-color: $color;
+        @include tabletToMobile {
+            display: none;
+        }
+}
+
+@mixin line-align {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            gap: 20px;
+}
+
+@mixin marquee($font){
+            position: relative;
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            font-family: $font;
+            font-size: 11.25em;
+            letter-spacing: -9px;
+            @content;
+            .symbol {
+                font-size: 5rem;
+                font-style: normal;
+            }
+            
+}
