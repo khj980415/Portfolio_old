@@ -67,7 +67,6 @@ window.addEventListener("load", () => {
 		for(let i=0; i<navLi.length; i++){
 			if(i===n){
 				if(!navLi[i].firstElementChild.classList.contains("active")){
-					console.log(n);
 					navLi[i].firstElementChild.classList.add("active");
 				}
 			}

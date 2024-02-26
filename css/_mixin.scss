@@ -35,6 +35,12 @@
     }
 }
 
+@mixin fold {
+    @media only screen and (max-width: $breakpoint-fold) {
+        @content;
+    }
+}
+
 @mixin section($color, $height:100vh) {
     font-size: 1em;
     background-color: $color;

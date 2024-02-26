@@ -227,18 +227,23 @@ body.mobile, body.mobile a {
 }
 @media only screen and (max-width: 760px) {
   #sec1 .inner .title_area .title h2 {
-    font-size: 50px;
+    font-size: 45px;
     letter-spacing: -3px;
   }
 }
 @media only screen and (max-width: 470px) {
   #sec1 .inner .title_area .title h2 {
-    font-size: 40px;
+    font-size: 35px;
   }
 }
 @media only screen and (max-width: 375px) {
   #sec1 .inner .title_area .title h2 {
     font-size: 30px;
+  }
+}
+@media only screen and (max-width: 280px) {
+  #sec1 .inner .title_area .title h2 {
+    font-size: 25px;
   }
 }
 #sec1 .inner .title_area .desc {
@@ -514,6 +519,7 @@ section h2 {
 
 #sec3 {
   border-bottom: 1px solid #141414;
+  overflow-x: hidden;
   font-size: 1em;
   background-color: #F0F0F0;
   height: auto;
@@ -839,6 +845,7 @@ section h2 {
 }
 
 footer {
+  overflow-x: hidden;
   font-size: 1em;
   background-color: #141414;
   height: auto;
