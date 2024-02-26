@@ -63,6 +63,10 @@ body, a {
   cursor: none;
 }
 
+body.mobile, body.mobile a {
+  cursor: auto;
+}
+
 .mouse_cursor {
   position: absolute;
   z-index: 1000;
@@ -123,6 +127,9 @@ body, a {
   position: relative;
   width: -moz-fit-content;
   width: fit-content;
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
 }
 #sec1 .inner .title_area .title h2.top span {
   position: absolute;
@@ -163,12 +170,55 @@ body, a {
   }
 }
 #sec1 .inner .title_area .title h2.bottom {
+  position: relative;
   width: -moz-fit-content;
   width: fit-content;
   font-family: "Roboto";
   font-style: italic;
   font-weight: 100;
   white-space: nowrap;
+  transform: translateX(-50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+  transition-delay: 0.5s;
+}
+#sec1 .inner .title_area .title h2.bottom::before {
+  content: "";
+  position: absolute;
+  right: -2%;
+  top: 15%;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #FE4249;
+  transition: 0.3s;
+}
+@media only screen and (max-width: 1240px) {
+  #sec1 .inner .title_area .title h2.bottom::before {
+    right: -3%;
+    transform: scale(0.8);
+  }
+}
+@media only screen and (max-width: 920px) {
+  #sec1 .inner .title_area .title h2.bottom::before {
+    right: -4%;
+    transform: scale(0.7);
+  }
+}
+@media only screen and (max-width: 760px) {
+  #sec1 .inner .title_area .title h2.bottom::before {
+    transform: scale(0.6);
+  }
+}
+@media only screen and (max-width: 470px) {
+  #sec1 .inner .title_area .title h2.bottom::before {
+    transform: scale(0.5);
+  }
+}
+@media only screen and (max-width: 375px) {
+  #sec1 .inner .title_area .title h2.bottom::before {
+    transform: scale(0.4);
+  }
 }
 @media only screen and (max-width: 920px) {
   #sec1 .inner .title_area .title h2 {
@@ -178,6 +228,7 @@ body, a {
 @media only screen and (max-width: 760px) {
   #sec1 .inner .title_area .title h2 {
     font-size: 50px;
+    letter-spacing: -3px;
   }
 }
 @media only screen and (max-width: 470px) {
@@ -190,13 +241,19 @@ body, a {
     font-size: 30px;
   }
 }
-#sec1 .inner .title_area .desc span {
-  font-size: 1.25vw;
-  font-weight: 300;
+#sec1 .inner .title_area .desc {
   display: flex;
   align-items: center;
   white-space: nowrap;
   gap: 20px;
+  transform: translateX(-50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+  transition-delay: 1s;
+}
+#sec1 .inner .title_area .desc span {
+  font-size: 1.25vw;
+  font-weight: 300;
 }
 @media only screen and (max-width: 1240px) {
   #sec1 .inner .title_area .desc span {
@@ -210,7 +267,10 @@ body, a {
     word-break: keep-all;
   }
 }
-#sec1 .inner .title_area .desc span::before {
+#sec1 .inner .title_area .desc span strong {
+  font-weight: 600;
+}
+#sec1 .inner .title_area .desc::before {
   content: "";
   display: inline-block;
   width: 100%;
@@ -218,7 +278,7 @@ body, a {
   background-color: #141414;
 }
 @media only screen and (max-width: 470px) {
-  #sec1 .inner .title_area .desc span::before {
+  #sec1 .inner .title_area .desc::before {
     display: none;
   }
 }
@@ -285,6 +345,14 @@ body, a {
     padding: 0 20px;
   }
 }
+#sec1.active .inner .title_area .title h2.top {
+  transform: translateY(0px);
+  opacity: 1;
+}
+#sec1.active .inner .title_area .title h2.bottom, #sec1.active .inner .title_area .desc {
+  transform: translateX(0px);
+  opacity: 1;
+}
 
 section h2 {
   font-size: 4em;
@@ -309,6 +377,9 @@ section h2 {
 #sec2 .inner h2.title {
   font-family: "Libre Caslon Display";
   font-weight: 400;
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -331,20 +402,54 @@ section h2 {
     justify-content: center;
   }
 }
+#sec2 .inner .desc {
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+  transition-delay: 0.5s;
+}
 #sec2 .inner .desc p {
   font-size: 1.125em;
   font-weight: 200;
+  word-break: keep-all;
 }
 #sec2 .inner .desc p strong {
   font-weight: 500;
 }
+@media only screen and (max-width: 920px) {
+  #sec2 .inner .desc p {
+    text-align: center;
+  }
+}
 #sec2 .inner .contents {
   display: flex;
   justify-content: space-between;
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+  transition-delay: 0.5s;
 }
 #sec2 .inner .contents h3 {
+  position: relative;
   font-size: 1.5625em;
   font-weight: 700;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+#sec2 .inner .contents h3::before {
+  content: "";
+  position: absolute;
+  right: -15px;
+  top: 0px;
+  width: 7px;
+  height: 7px;
+  border-radius: 100%;
+  background-color: #0BB7B1;
+}
+@media only screen and (max-width: 920px) {
+  #sec2 .inner .contents h3 {
+    margin: 0 auto;
+  }
 }
 #sec2 .inner .contents ul {
   display: flex;
@@ -402,6 +507,10 @@ section h2 {
     font-size: 0.8em;
   }
 }
+#sec2.active .inner h2.title, #sec2.active .inner .desc, #sec2.active .inner .contents {
+  transform: translateY(0px);
+  opacity: 1;
+}
 
 #sec3 {
   border-bottom: 1px solid #141414;
@@ -424,10 +533,30 @@ section h2 {
   top: 50px;
   align-self: flex-start;
   margin-top: 30px;
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
 }
 #sec3 .inner .title_area .title {
   font-style: italic;
   font-weight: 500;
+}
+#sec3 .inner .title_area .title::after {
+  content: "";
+  position: absolute;
+  top: 3%;
+  transform: translateX(5px);
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: #FE4249;
+}
+@media only screen and (max-width: 760px) {
+  #sec3 .inner .title_area .title {
+    margin: 0 auto;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
 }
 #sec3 .inner .title_area p {
   font-weight: 400;
@@ -452,6 +581,18 @@ section h2 {
   padding: 30px 0 40px 0;
   counter-increment: skils;
   box-sizing: border-box;
+}
+#sec3 .inner .contents ol li:nth-child(2n-1) {
+  transform: translateX(100px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+  transition-delay: 0.5s;
+}
+#sec3 .inner .contents ol li:nth-child(2n) {
+  transform: translateX(-100px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+  transition-delay: 0.5s;
 }
 #sec3 .inner .contents ol li h3 {
   position: relative;
@@ -532,6 +673,9 @@ section h2 {
   width: calc(100% + 30px);
   height: 1px;
   background-color: #141414;
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+  transition-delay: 1.5s;
 }
 @media only screen and (max-width: 760px) {
   #sec3 .inner .contents ol li::after {
@@ -551,6 +695,7 @@ section h2 {
 }
 @media only screen and (max-width: 760px) {
   #sec3 .inner {
+    gap: 30px;
     flex-direction: column;
   }
 }
@@ -568,6 +713,17 @@ section h2 {
   #sec3 {
     font-size: 0.8em;
   }
+}
+#sec3.active .inner .title_area {
+  transform: translateY(0px);
+  opacity: 1;
+}
+#sec3.active .inner .contents ol li:nth-child(2n-1), #sec3.active .inner .contents ol li:nth-child(2n) {
+  transform: translateX(0px);
+  opacity: 1;
+}
+#sec3.active .inner .contents ol li::after {
+  opacity: 1;
 }
 
 #sec4 {
@@ -620,6 +776,11 @@ section h2 {
   font-size: 5rem;
   font-style: normal;
 }
+#sec4 .mouse {
+  transform: translateY(50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+}
 #sec4 .mouse .icon {
   position: relative;
   width: 35px;
@@ -627,24 +788,39 @@ section h2 {
   border: solid #141414 2px;
   border-radius: 35px;
 }
+#sec4 .mouse .icon::before {
+  content: "";
+  position: absolute;
+  left: -30%;
+  top: -30%;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: solid 2px #141414;
+  transform: scale(0);
+  animation: pop 2s ease infinite;
+}
+@keyframes pop {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
 #sec4 .mouse .icon .wheel {
   position: absolute;
   left: 50%;
-  top: 10px;
+  top: 6px;
   width: 2px;
-  height: 13px;
+  height: 17px;
   border-radius: 2px;
-  opacity: 0;
   background-color: #141414;
-  animation: wheel-moving 3s ease infinite;
-}
-@keyframes wheel-moving {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
 }
 #sec4 .mouse span {
   display: block;
@@ -656,6 +832,10 @@ section h2 {
   #sec4 {
     font-size: 0.8em;
   }
+}
+#sec4.active .mouse {
+  transform: translateY(0px);
+  opacity: 1;
 }
 
 footer {
@@ -680,6 +860,11 @@ footer .inner a {
 }
 footer .inner .top {
   margin-top: 10vh;
+}
+footer .inner .top .title {
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
 }
 footer .inner .top .title h2 {
   position: relative;
@@ -722,6 +907,10 @@ footer .inner .top .title h2::after {
   }
 }
 footer .inner .top .link {
+  transform: translateY(-50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+  transition-delay: 0.5s;
   margin-top: 60px;
 }
 footer .inner .top .link ul {
@@ -743,7 +932,7 @@ footer .inner .top .link ul li::after {
   width: 5px;
   height: 5px;
   left: 50%;
-  bottom: -50%;
+  bottom: -15px;
   transform: translateX(-50%);
   background-color: #F0F0F0;
   border-radius: 100%;
@@ -756,6 +945,10 @@ footer .inner .top .link .github {
   margin-top: 30px;
 }
 footer .inner .bottom {
+  transform: translateX(50px);
+  opacity: 0;
+  transition: transform 1.5s, opacity 1.5s;
+  transition-delay: 1s;
   text-align: right;
   margin-bottom: 2vh;
   font-size: 14px;
@@ -776,4 +969,12 @@ footer .inner .bottom {
   footer {
     font-size: 0.6em;
   }
+}
+footer.active .inner .top .title, footer.active .inner .top .link {
+  transform: translateY(0px);
+  opacity: 1;
+}
+footer.active .inner .bottom {
+  transform: translateX(0px);
+  opacity: 1;
 }

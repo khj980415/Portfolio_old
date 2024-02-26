@@ -84,3 +84,12 @@
             }
             
 }
+
+@mixin activeY{
+    transform: translateY(0px);
+    opacity: 1;
+}
+@mixin activeX{
+    transform: translateX(0px);
+    opacity: 1;
+}

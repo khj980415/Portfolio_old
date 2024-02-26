@@ -5,6 +5,11 @@ body {
 body, a {
     cursor: none;
 }
+
+body.mobile, body.mobile a {
+    cursor: auto;
+}
+
 .mouse_cursor {
     position: absolute;
 	z-index:1000;

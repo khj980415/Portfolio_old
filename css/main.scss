@@ -24,6 +24,10 @@
                     &.top{
                         position: relative;
                         width: fit-content;
+                        transform: translateY(-50px);
+                        opacity: 0;
+                        transition: transform 1.5s, opacity 1.5s;
+                        
                         span {
                             position: absolute;
                             width: 5vw;
@@ -58,17 +62,52 @@
                         }
                     }
                     &.bottom {
+                        position: relative;
                         width: fit-content;
                         font-family: "Roboto";
                         font-style: italic;
                         font-weight: 100;
                         white-space: nowrap;
+                        transform: translateX(-50px);
+                        opacity: 0;
+                        transition: transform 1.5s, opacity 1.5s;
+                        transition-delay: 0.5s;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            right: -2%;
+                            top: 15%;
+                            width: 10px;
+                            height: 10px;
+                            border-radius: 100%;
+                            background-color: $color-red;
+                            transition: 0.3s;
+                            @include grid {
+                                right: -3%;
+                                transform: scale(0.8);
+                            }
+                            @include laptopToTablet {
+                                right: -4%;
+                                transform: scale(0.7);
+                            }
+                            @include tablet {
+                                transform: scale(0.6);
+                            }
+                            @include tabletToMobile {
+                                transform: scale(0.5);
+                            }
+                            @include mobile {
+                                transform: scale(0.4);
+                            }
+                            
+                        }
                     }
                     @include laptopToTablet {
                         font-size: 57.5px;
                     }
                     @include tablet {
                         font-size: 50px;
+                        letter-spacing: -3px;
                     }
                     @include tabletToMobile {
                         font-size: 40px;
@@ -79,10 +118,15 @@
                 }
             }
             .desc {
+                @include line-align;
+                transform: translateX(-50px);
+                opacity: 0;
+                transition: transform 1.5s, opacity 1.5s;;
+                transition-delay: 1s;
                 span {
                     font-size: 1.2500vw;
                     font-weight: 300;
-                    @include line-align;
+                    
                     @include grid {
                         font-size: 15.5px;
                         font-weight: 400;
@@ -91,9 +135,12 @@
                         white-space: wrap;
                         word-break: keep-all;
                     }
-                    &::before{
-                        @include line($color-black);
+                    strong {
+                        font-weight: 600;
                     }
+                }
+                &::before{
+                    @include line($color-black);
                 }
             }
         }
@@ -156,7 +203,14 @@
         }
     
     }
-        
+    &.active {
+        .inner .title_area .title h2.top {
+            @include activeY;
+        }
+        .inner .title_area .title h2.bottom, .inner .title_area .desc {
+            @include activeX;
+        }
+    }
 }
 
 section {
@@ -174,6 +228,9 @@ section {
         h2.title {
             font-family: "Libre Caslon Display";
             font-weight: 400;
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: transform 1.5s, opacity 1.5s;;
             @include line-align;
             &::after{
             @include line($color-gray);
@@ -184,20 +241,49 @@ section {
         }
         
         .desc {
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: transform 1.5s, opacity 1.5s;;
+            transition-delay: 0.5s;
             p {
                 font-size: 1.125em;
                 font-weight: 200;
+                word-break: keep-all;
                 strong {
                     font-weight: 500;
+                }
+                @include laptopToTablet {
+                    text-align: center;
                 }
             }
         }
         .contents {
             display: flex;
             justify-content: space-between;
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: transform 1.5s, opacity 1.5s;;
+            transition-delay: 0.5s;
             h3 {
+                position: relative;
                 font-size: 1.5625em;
                 font-weight: 700;
+                max-width: fit-content;
+                
+                &::before {
+                    content: "";
+                    position: absolute;
+                    right: -15px;
+                    top: 0px;
+                    width: 7px;
+                    height: 7px;
+                    border-radius: 100%;
+                    background-color: $color-green;
+                    
+                }
+                @include laptopToTablet {
+                    margin: 0 auto;
+                }
             }
             ul {
                 display: flex;
@@ -243,7 +329,11 @@ section {
         padding: 4.375em 0;
         font-size: 0.8em;
     }
-    
+    &.active {
+        .inner h2.title, .inner .desc, .inner .contents {
+            @include activeY;
+        }
+    }
 }
 
 #sec3 {
@@ -258,9 +348,26 @@ section {
             top: 50px;
             align-self: flex-start;
             margin-top: 30px;
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: transform 1.5s, opacity 1.5s;;
             .title {
                 font-style: italic;
                 font-weight: 500;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 3%;
+                    transform: translateX(5px);
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 100%;
+                    background-color: $color-red;
+                }
+                @include tablet {
+                    margin: 0 auto;
+                    width: fit-content;
+                }
             }
             p {
                 
@@ -285,6 +392,18 @@ section {
                     padding: 30px 0 40px 0;
                     counter-increment: skils;
                     box-sizing: border-box;
+                    &:nth-child(2n-1){
+                        transform: translateX(100px);
+                        opacity: 0;
+                        transition: transform 1.5s, opacity 1.5s;;
+                        transition-delay: 0.5s;
+                    }
+                    &:nth-child(2n){
+                        transform: translateX(-100px);
+                        opacity: 0;
+                        transition: transform 1.5s, opacity 1.5s;;
+                        transition-delay: 0.5s;
+                    }
                     h3 {
                         position: relative;
                         font-family: "Libre Caslon Display";
@@ -305,6 +424,7 @@ section {
                                 top: -30px;
                                 transform: translateX(-50%);
                             }
+                        
                         }
                         @include laptopToTablet {
                             font-size: 43.125px;
@@ -351,6 +471,9 @@ section {
                         width: calc(100% + 30px);
                         height: 1px;
                         background-color: $color-black;
+                        opacity: 0;
+                        transition: transform 1.5s, opacity 1.5s;;
+                        transition-delay: 1.5s;
                         @include tablet {
                             left: auto;
                             width: 100%;
@@ -368,6 +491,7 @@ section {
             }
         }
         @include tablet {
+            gap: 30px;
             flex-direction: column;
         }
     }
@@ -377,7 +501,17 @@ section {
     @include laptopToTablet{
         font-size: 0.8em;
     }
-    
+    &.active {
+        .inner .title_area {
+            @include activeY;
+        }
+        .inner .contents ol li:nth-child(2n-1), .inner .contents ol li:nth-child(2n) {
+            @include activeX;
+        }
+        .inner .contents ol li::after {
+            opacity: 1;
+        }
+    }
 }
 #sec4 {
     display: flex;
@@ -410,31 +544,50 @@ section {
         }
     }
     .mouse {
+        transform: translateY(50px);
+        opacity: 0;
+        transition: transform 1.5s, opacity 1.5s;;
         .icon {
             position: relative;
             width: 35px;
             height: 50px;
             border: solid $color-black 2px;
             border-radius: 35px;
-            .wheel {
+            &::before {
+                content: "";
                 position: absolute;
-                left: 50%;
-                top: 10px;
-                width: 2px;
-                height: 13px;
-                border-radius: 2px;
-                opacity: 0;
-                background-color: $color-black;
-                animation: wheel-moving 3s ease infinite;
-                @keyframes wheel-moving {
+                left: -30%;
+                top: -30%;
+                width: 30px;
+                height: 30px;
+                border-radius: 100%;
+                border: solid 2px $color-black;
+                transform: scale(0);
+                animation: pop 2s ease infinite;
+                @keyframes pop {
                     0%{
+                        transform: scale(0.3);
                         opacity: 0;
                     }
-                    100%{
+                    50% {
                         opacity: 1;
+                    }
+                    100%{
+                        transform: scale(1);
+                        opacity: 0;
                     }
                     
                 }
+
+            }
+            .wheel {
+                position: absolute;
+                left: 50%;
+                top: 6px;
+                width: 2px;
+                height: 17px;
+                border-radius: 2px;
+                background-color: $color-black;
             }
         }
         span {
@@ -446,6 +599,11 @@ section {
     }
     @include tablet {
         font-size: 0.8em;
+    }
+    &.active {
+        .mouse {
+            @include activeY;
+        }
     }
 }
 
@@ -464,6 +622,9 @@ footer {
         .top {
             margin-top: 10vh;
             .title {
+                transform: translateY(-50px);
+                opacity: 0;
+                transition: transform 1.5s, opacity 1.5s;;
                 h2 {
                     position: relative;
                     margin: 0 auto;
@@ -503,6 +664,10 @@ footer {
                 }
             }
             .link {
+                transform: translateY(-50px);
+                opacity: 0;
+                transition: transform 1.5s, opacity 1.5s;;
+                transition-delay: 0.5s;
                 margin-top: 60px;
                 ul {
                     display: flex;
@@ -521,7 +686,7 @@ footer {
                             width: 5px;
                             height: 5px;
                             left: 50%;
-                            bottom: -50%;
+                            bottom: -15px;
                             transform: translateX(-50%);
                             background-color: $color-gray;
                             border-radius: 100%;
@@ -538,6 +703,10 @@ footer {
             }
         }
         .bottom {
+            transform: translateX(50px);
+            opacity: 0;
+            transition: transform 1.5s, opacity 1.5s;;
+            transition-delay: 1s;
             text-align: right;
             margin-bottom: 2vh;
             font-size: 14px;
@@ -550,5 +719,13 @@ footer {
     }
     @include mobile{
         font-size: 0.6em;
+    }
+    &.active {
+        .inner .top .title, .inner .top .link {
+            @include activeY;
+        }
+        .inner .bottom {
+            @include activeX;
+        }
     }
 }
