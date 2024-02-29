@@ -1,6 +1,6 @@
 @import "_variables";
 
-// 1024px
+// 1240px
 @mixin grid {
     @media only screen and (max-width: $breakpoint-grid) {
         @content;
@@ -28,7 +28,7 @@
     }
 }
 
-// 375px
+// 370px
 @mixin mobile {
     @media only screen and (max-width: $breakpoint-mobile) {
         @content;
@@ -45,6 +45,9 @@
     font-size: 1em;
     background-color: $color;
     height: $height;
+    @if ($color == $color-black){
+        color: $color-gray;
+    }
     .inner {
         margin: 0 auto;
         max-width: 1240px;
@@ -55,6 +58,14 @@
             padding: 0 20px;
         }
 }
+}
+
+@mixin h2{
+    section {
+        h2 {
+            font-size: 4em;
+        }
+    }
 }
 
 @mixin line($color){
@@ -73,6 +84,92 @@
             align-items: center;
             white-space: nowrap;
             gap: 20px;
+}
+
+@mixin list-section($title-width, $title-margin:0) {
+        display: flex;
+        gap: 100px;
+        padding: 6.25em 0;
+        .title_area {
+            position: sticky;
+            top: 50px;
+            width: $title-width;
+            align-self: flex-start;
+            margin-top: $title-margin;
+            transform: translateY(-50px);
+            opacity: 0;
+            transition: transform 1.5s, opacity 1.5s;
+            @if ($title-width > 260){
+                @include mobile{
+                    width: 100%;
+                }
+            }
+            .title {
+                font-style: italic;
+                font-weight: 500;
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 3%;
+                    transform: translateX(5px);
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 100%;
+                    background-color: $color-red;
+                }
+                @if ($title-width <= 260){
+                    @include tablet {
+                        margin: 0 auto;
+                        width: fit-content;
+                    }
+                }
+                @else {
+                    @include laptopToTablet {
+                        margin: 0 auto;
+                        width: fit-content;
+                    }
+                }
+                
+            }
+            p {
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 200%; 
+                word-break: keep-all;
+            }
+            @if ($title-width <= 260){
+                @include tablet {
+                    position: static;
+                    text-align: center;
+                    align-self: center;
+                }
+            }
+            @else {
+                @include laptopToTablet {
+                    position: static;
+                    text-align: center;
+                    align-self: center;
+                }
+            }
+            
+        }
+}
+
+@mixin title-line($line-color) {
+    h2.title {
+        font-family: "Libre Caslon Display";
+        font-weight: 400;
+        transform: translateY(-50px);
+        opacity: 0;
+        transition: transform 1.5s, opacity 1.5s;
+        @include line-align;
+        &::after{
+        @include line($line-color);
+        }
+        @include tabletToMobile {
+            justify-content: center;
+        }
+    }
 }
 
 @mixin marquee($font){
@@ -98,4 +195,166 @@
 @mixin activeX{
     transform: translateX(0px);
     opacity: 1;
+}
+
+@mixin text-circle {
+    svg {
+        width: 356px;
+        height: 356px;
+        animation: rotate 20s linear infinite;
+        @keyframes rotate {
+            0%{
+                transform: rotate(0);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        text textPath{
+            font-family: "Libre Caslon Display";
+            font-size: 40px;
+            fill: #000;
+            letter-spacing: 0.12em;
+        }
+        @content;
+    }
+}
+
+@mixin project-desc($direction, $padding) {
+    ul {
+        display: flex;
+        flex-direction: $direction;
+        @if ($direction== row) {
+            gap: 30px;
+        }
+        li {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            padding: $padding 0;
+            font-size: 16px;
+            span {
+                font-size: 18px;
+                &.title {
+                    font-weight: 700;
+                    line-height: 150%;
+                }
+            }
+        }
+    }
+}
+
+@mixin button {
+    .button {
+        display: inline-block;
+        width: 100%;
+        font-size: 20px;
+        font-weight: 300;
+        padding: 10px 30px;
+        box-sizing: border-box;
+        border: 1px solid $color-black;
+        border-radius: 25px;
+        background: url(../images/icon_arrow_black.svg) no-repeat right 30px center;
+        transition: 0.3s;
+        &:hover {
+            background-color: $color-black;
+            color: $color-gray;
+            background-image: url(../images/icon_arrow_white.svg);
+        }
+    }
+}
+
+@mixin title-detail ($text-position, $color){
+    .title_area {
+        width: 380px;
+        @include tabletToMobile {
+            width: 100%;
+        }
+        .top {
+        @if($text-position == right){
+            display: flex;
+            justify-content: flex-end;
+        }
+            h2 {
+                @include line-align;
+                width: 80%;
+                font-family: "Libre Caslon Display";
+                font-size: 4em;
+                font-weight: 400;
+                @if ($text-position == left){
+                    &::after {
+                        content: "";
+                        display: inline-block;
+                        width: 100%;
+                        height: 1px;
+                        background-color: $color;
+                    }
+                }
+                @else {
+                    &::before {
+                        content: "";
+                        display: inline-block;
+                        width: 100%;
+                        height: 1px;
+                        background-color: $color;
+                    }
+                }
+            }
+        }
+        .bottom {
+            font-size: 16px;
+            word-break: keep-all;
+            font-weight: 300;
+            line-height: 200%;
+            @if ($text-position == right){
+                text-align: right;
+            }
+        }
+    }
+}
+
+@mixin font-weight {
+    li.bold {
+        font-weight: 700;
+    }
+    li.medium {
+        font-weight: 500;
+    }
+    li.regular {
+        font-weight: 400;
+    }
+}
+
+@mixin font($font) {
+                display: flex;
+                gap: 30px;
+                align-items: center;
+                ul {
+                    height: 100%;
+                    &.sample {
+                        display: flex;
+                        flex-direction: column;
+                        text-align: center;
+                        justify-content: space-around;
+                        font-family: $font;
+                        font-size: 4em;
+                        @include font-weight;
+                        
+                    }
+                    &.font {
+                        font-size: 16px;
+                        display: flex;
+                        flex-direction: column;
+                        text-align: center;
+                        justify-content: space-around;
+                        @include font-weight;
+                        @include tablet {
+                            gap: 30px;
+                        }
+                    }
+                }
+                @include tablet {
+                    flex-direction: column;
+                    align-items: center;
+                }
 }

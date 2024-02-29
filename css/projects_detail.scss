@@ -1,0 +1,283 @@
+@import "_variables";
+@import "_reset";
+@import "_mixin";
+@import "_header";
+@import "_footer";
+@import "_cursor";
+
+#sec1 {
+    @include section($color-gray, auto){
+        h2 {
+            text-align: center;
+            padding-top: 152px;
+            font-size: 4.6875vw;
+            font-weight: 700;
+            word-break: keep-all;
+            @include laptopToTablet {
+                font-size: 43.125px;
+            }
+            @include tablet {
+                font-size: 30px;
+            }
+            @include tabletToMobile {
+                font-size: 25px;
+            }
+            @include mobile {
+                font-size: 16px;
+            }
+        }
+        .thumb_section{
+            .top {
+                margin-top: 30px;
+                .visual {
+                    width: 100%;
+                    border: solid 1px $color-black;
+                    box-sizing: border-box;
+                }
+            }
+            .bottom {
+                display: flex;
+                margin: 0 auto;
+                margin-top: 10px;
+                width: 100%;
+                gap: 30px;
+                justify-content: space-between;
+                .desc {
+                    @include project-desc(row, 10px);
+                    white-space: nowrap;
+                }
+                .link{
+                    width: 100%;
+                    @include button;
+                }
+                @media only screen and (max-width: 980px) {
+                    flex-direction: column;
+                    .desc {
+                        ul {
+                            flex-direction: column;
+                            gap: 0;
+                        }
+                    }
+                    .link {
+                        width: 100%;
+                    }
+                }
+                @include mobile {
+                    .desc ul li {
+                        flex-direction: column;
+                    }
+                    .link {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+        > .desc {
+            display: flex;
+            padding: 4.375em 0;
+            flex-direction: column;
+            font-size: 16px;
+            gap: 20px;
+            text-align: center;
+            word-break: keep-all;
+        }
+        .overview {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-bottom: 4.375em;
+            .title_area {
+                width: 50%;
+                padding: 0 1.25em;
+                h3 {
+                    font-family: "Libre Caslon Display";
+                    font-size: 3em;
+                    font-weight: 400;
+                    @include line-align;
+                    justify-content: center;
+                    &::before {
+                        @include line($color-black);
+                    }
+                    &::after {
+                        @include line($color-black);
+                    }
+                }
+            }
+            .visual {
+                margin-top: 4.375em;
+                width: 100%;
+                border: solid 1px $color-black;
+                box-sizing: border-box;
+            }
+        }
+    }
+    @include grid{
+        font-size: 0.8em;
+    }
+    @include laptopToTablet {
+        font-size: 0.7em;
+    }
+}
+
+#sec2 {
+    padding: 80px 0;
+    @include section($color-black, auto){
+        @include title-detail(left, $color-gray);
+        .contents {
+            margin-top: 110px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 30px;
+            flex-wrap: wrap;
+            .kor {
+                @include font("Noto Sans KR");
+                
+            }
+            .eng {
+                @include font("Roboto");
+            }
+            @include tablet {
+                flex-direction: column;
+                align-items: center;
+                gap: 60px;
+            }
+        }
+    }
+    @include grid{
+        font-size: 0.8em;
+    }
+    @include laptopToTablet {
+        font-size: 0.7em;
+    }
+}
+
+#sec3 {
+    padding: 80px 0;
+    @include section($color-gray, auto){
+        @include title-detail(right, $color-black);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        .contents {
+            margin-top: 70px;
+            display: flex;
+            width: 100%;
+            height: 350px;
+            gap: 10px;
+            > div {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                padding: 25px;
+                border: solid 1px $color-black;
+                box-sizing: border-box;
+                font-weight: 300;
+                .top {
+                    font-size: 24px;
+                    font-style: italic;
+                }
+                .bottom {
+                    position: absolute;
+                    bottom: 25px;
+                    font-size: 20px;
+
+                }
+                &.color1 {
+                    background-color: #000;
+                    color: $color-gray;
+                    flex-basis: 200%;
+                }
+                &.color2 {
+                    background-color: #222;
+                    color: $color-gray;
+                }
+                &.color3 {
+                    background-color: #999;
+                    color: $color-gray;
+                }
+                &.color4 {
+                    background-color: #fff;
+                    color: $color-black;
+                }
+            }
+            @include tablet {
+                flex-direction: column;
+                .bottom {
+                    right: 25px;
+
+                }
+            }
+        }
+    }
+    @include grid{
+        font-size: 0.8em;
+    }
+    @include laptopToTablet {
+        font-size: 0.7em;
+    }
+}
+
+#sec4 {
+    padding: 80px 0;
+    @include section($color-gray, auto){
+        .title_area{
+            h3 {
+                font-family: "Libre Caslon Display";
+                font-size: 5em;
+                font-weight: 400;
+                line-height: 5rem;
+            }
+            p {
+                font-size: 2em;
+                font-style: italic;
+                font-weight: 100;
+            }
+        }
+        .contents {
+            position: relative;
+            .visuals {
+                display: flex;
+                position: relative;
+                margin-top: 50px;
+                gap: 15px;
+                justify-content: space-between;
+                z-index: 10;
+                li {
+                    img {
+                        border-radius: 20px;
+                        border: solid 1px $color-black;
+                    }
+                }
+                @include tablet {
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 30px;
+                }
+            }
+            .text_circle {
+                position: absolute;
+                right: 0;
+                transform: translate(50%, -50%);
+                top: 0;
+                @include text-circle{
+                    @include tablet{
+                        width: 200px;
+                        height: 200px;
+                    }
+                    @include mobile{
+                        width: 100px;
+                        height: 100px;
+                    }
+                };
+                z-index: 0;
+            }
+        }
+    }
+    @include grid{
+        font-size: 0.8em;
+    }
+    @include laptopToTablet {
+        font-size: 0.7em;
+    }
+}
