@@ -9,6 +9,9 @@ window.addEventListener("load", () => {
 	let footer=document.getElementById("footer");
 	let targety=0;
 
+	let winW=0;
+	let device;
+
     navLi[3].firstElementChild.classList.add("active");
 
 	for(let i=0; i<section.length; i++){
@@ -19,6 +22,34 @@ window.addEventListener("load", () => {
 
 	document.body.addEventListener("mousemove", function(e){
 		gsap.to(cursor, {left: e.pageX-5, top: e.pageY-5, duration: 0.2})
+	});
+
+	function cursorDisplay(){
+		winW=window.innerWidth;
+		if(winW>760){
+			device="pc";
+		}
+		else{
+			device="mobile";
+		}
+		if (device === "mobile"){
+			if(!document.body.classList.contains("mobile")){
+			cursor.style.display="none";
+			this.document.body.classList.add("mobile");
+			}
+		}
+		else{
+			if(document.body.classList.contains("mobile")){
+			cursor.style.display="block";
+			this.document.body.classList.remove("mobile");
+			}
+		}
+	}
+
+	cursorDisplay();
+
+	window.addEventListener("resize", function(){
+		cursorDisplay();
 	});
 
     const trigger=new ScrollTrigger.default({
